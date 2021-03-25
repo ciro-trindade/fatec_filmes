@@ -63,5 +63,26 @@ public class AtorController implements ControllerInterface<Ator> {
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
+	
+	@GetMapping("/ordenado")
+	public ResponseEntity<List<Ator>> getOrdenadoByNome() {
+		return ResponseEntity.ok(service.findByOrderByNome());
+	}
+	
+	@GetMapping("/filme/{id}")
+	public ResponseEntity<List<Ator>> getByFilme(@PathVariable("id") Long filmeId) {
+		return ResponseEntity.ok(service.findByFilme(filmeId));
+	}
 
+	@GetMapping("/nacionalidade/{id}")
+	public ResponseEntity<List<Ator>> getByNacionalidade(@PathVariable("id") Long nacionalidadeId) {
+		return ResponseEntity.ok(service.findByNacionalidade(nacionalidadeId));
+	}
+
+	@GetMapping("/count/{id}")
+	public ResponseEntity<Long> getByNumeroDeAtoresPorNacionalidade(@PathVariable("id") Long nacionalidadeId) {
+		return ResponseEntity.ok(service.findNumeroDeAtoresPorNacionalidade(nacionalidadeId));
+	}
+
+	
 }

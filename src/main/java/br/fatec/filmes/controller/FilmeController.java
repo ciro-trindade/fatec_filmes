@@ -64,4 +64,26 @@ public class FilmeController implements ControllerInterface<Filme> {
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
 	
+	@GetMapping("/ordenado/ano")
+	public ResponseEntity<List<Filme>> getOrdenadoPorAno() {
+		return ResponseEntity.ok(service.findOrdenadoPorAno());
+	}	
+	
+	@GetMapping("/ator/{id}")
+	public ResponseEntity<List<Filme>> getByAtor(@PathVariable("id") Long atorId) {
+		return ResponseEntity.ok(service.findByAtor(atorId));
+	}
+	
+	@GetMapping("/ano/{ano}")
+	public ResponseEntity<List<Filme>> getByAno(@PathVariable("ano") Integer ano) {
+		return ResponseEntity.ok(service.findByAno(ano));
+	}
+
+	@GetMapping("/count/{from}/{to}")
+	public ResponseEntity<Long> getNumeroDedFilmesPorPeriodo(
+			@PathVariable("from") Integer from, 
+			@PathVariable("to") Integer to) {
+		return ResponseEntity.ok(service.findNumeroDeFilmesPorPeriodo(from, to));
+	}
+
 }

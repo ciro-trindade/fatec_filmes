@@ -63,5 +63,15 @@ public class NacionalidadeController implements ControllerInterface<Nacionalidad
 		}
 		return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
 	}
+	
+	@GetMapping("/ordenado")
+	public ResponseEntity<List<Nacionalidade>> getOrdenado() {
+		return ResponseEntity.ok(service.findByOrderByPais());
+	}
+	
+	@GetMapping("/letra/{letra}")
+	public ResponseEntity<List<Nacionalidade>> getByPrimeiraLetra(@PathVariable("letra") String letra) {
+		return ResponseEntity.ok(service.findByPrimeiraLetra(letra.charAt(0)));
+	}
 		
 }

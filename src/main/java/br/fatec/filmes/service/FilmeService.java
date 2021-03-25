@@ -50,4 +50,19 @@ public class FilmeService implements ServiceInterface<Filme> {
 		return false;
 	}
 	
+	public List<Filme> findOrdenadoPorAno() {
+		return repo.findOrdenadoPorAno();
+	}
+	
+	public List<Filme> findByAtor(Long atorId) {
+		return repo.findByAtor(atorId);
+	}
+	
+	public List<Filme> findByAno(Integer ano) {
+		return repo.findByAno(ano);
+	}
+	
+	public Long findNumeroDeFilmesPorPeriodo(Integer from, Integer to) {
+		return repo.findNumeroDeFilmesPorPeriodo(from, to);
+	}
 }
