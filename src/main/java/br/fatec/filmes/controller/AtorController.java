@@ -2,6 +2,8 @@ package br.fatec.filmes.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,13 +44,13 @@ public class AtorController implements ControllerInterface<Ator> {
 
 	@Override
 	@PostMapping
-	public ResponseEntity<Ator> post(@RequestBody Ator obj) {		
+	public ResponseEntity<Ator> post(@Valid @RequestBody Ator obj) {		
 		return ResponseEntity.ok(service.create(obj));
 	}
 
 	@Override
 	@PutMapping
-	public ResponseEntity<?> put(@RequestBody Ator obj) {
+	public ResponseEntity<?> put(@Valid @RequestBody Ator obj) {
 		if (service.update(obj)) {
 			return ResponseEntity.ok(obj);
 		}

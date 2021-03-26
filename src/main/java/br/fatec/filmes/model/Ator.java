@@ -8,6 +8,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Past;
+
+import org.hibernate.validator.constraints.Length;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -17,10 +21,14 @@ public class Ator extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "nm_nome", length = 80)
+	@NotBlank
+	@Length(min = 4, max = 80)
 	private String nome;
+	
 	@Column(name = "dt_nascimento")
 	@Temporal(TemporalType.DATE)
 	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
+	@Past
 	private Date nascimento;
 	
 	@ManyToOne

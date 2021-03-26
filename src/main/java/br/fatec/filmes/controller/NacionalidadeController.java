@@ -2,6 +2,8 @@ package br.fatec.filmes.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,13 +44,13 @@ public class NacionalidadeController implements ControllerInterface<Nacionalidad
 
 	@Override
 	@PostMapping
-	public ResponseEntity<Nacionalidade> post(@RequestBody Nacionalidade obj) {		
+	public ResponseEntity<Nacionalidade> post(@Valid @RequestBody Nacionalidade obj) {		
 		return ResponseEntity.ok(service.create(obj));
 	}
 
 	@Override
 	@PutMapping
-	public ResponseEntity<?> put(@RequestBody Nacionalidade obj) {
+	public ResponseEntity<?> put(@Valid @RequestBody Nacionalidade obj) {
 		if (service.update(obj)) {
 			return ResponseEntity.ok(obj);
 		}

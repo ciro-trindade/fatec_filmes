@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
 
 @Table(name = "tb_filme")
 @Entity
@@ -14,7 +19,12 @@ public class Filme extends AbstractEntity {
 	private static final long serialVersionUID = 1L;
 	
 	@Column(name = "nm_titulo", length = 120)
+	@NotBlank
+	@Length(min = 2, max = 120)
 	private String titulo;
+	
+	@Min(1900)
+	@Max(2021)
 	@Column(name = "nr_ano")
 	private Integer ano;
 	
